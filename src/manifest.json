@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "version": "1.0.0",
+  "name": "ChatGPT This",
+  "author": "Giuseppe Pascale <giuseppe.pascale03@gmail.com>",
+  "description": "A simple Chrome Extension that enables the user to prompt ChatGPT a question about the current website.",
+  "permissions": ["activeTab", "storage"],
+  "action": {
+    "default_title": "ChatGPT This!"
+  }
+}

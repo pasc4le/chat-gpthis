@@ -1,0 +1,53 @@
+#chat {
+  @apply flex flex-col w-full h-full;
+
+  #topbar {
+    @apply w-full flex items-center gap-2 px-3 py-2 border-b-2 border-primary-focus;
+    @apply bg-primary text-primary-content;
+
+    h1 {
+      @apply flex-1 text-xl font-bold;
+    }
+
+    button {
+      @apply ml-auto btn btn-ghost btn-square btn-sm;
+    }
+  }
+
+  #messages {
+    @apply flex-1 flex gap-3 flex-col overflow-y-auto overflow-x-hidden;
+    @apply p-3;
+
+    .message:first-child {
+      @apply mt-auto;
+    }
+
+    .message.assistant {
+      @apply mr-auto text-left bg-base-300;
+    }
+
+    .message.user {
+      @apply ml-auto text-right bg-base-200;
+    }
+
+    .message.system {
+      @apply mx-auto text-center bg-base-300 opacity-50;
+    }
+
+    .message {
+      @apply p-2 rounded-md w-11/12;
+    }
+  }
+
+  #editor {
+    @apply flex gap-2 p-2 shadow-md bg-neutral border-t-2 border-neutral-focus;
+
+    input[type="text"] {
+      @apply input bg-neutral input-sm flex-1;
+    }
+
+    button {
+      @apply btn btn-ghost btn-square btn-sm;
+    }
+  }
+}
