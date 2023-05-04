@@ -14,6 +14,8 @@ const POPUP_INDEX = path.join(OUTDIR, POPUP_OUTDIR, "index.html");
 const IS_DEV =
   /(local-)?dev(elopment)?/.exec(process.env?.NODE_ENV ?? "") != null;
 
+console.log("Building in Enviroment:", IS_DEV ? "Development" : "Production");
+
 fs.mkdirSync(path.join(OUTDIR, BACKGROUND_OUTDIR), { recursive: true });
 fs.mkdirSync(path.join(OUTDIR, POPUP_OUTDIR), { recursive: true });
 
@@ -28,7 +30,7 @@ const files_to_inject = {
 esbuild.build({
   entryPoints: ["./src/background/index.ts"],
   bundle: true,
-  minify: IS_DEV,
+  minify: !IS_DEV,
   outdir: path.join(OUTDIR, BACKGROUND_OUTDIR),
   plugins: [postcss()],
 });
@@ -41,7 +43,7 @@ fs.copyFileSync("./src/popup/index.html", POPUP_INDEX);
 esbuild.build({
   entryPoints: ["src/popup/index.ts"],
   bundle: true,
-  minify: IS_DEV,
+  minify: !IS_DEV,
   outdir: path.join(OUTDIR, POPUP_OUTDIR),
   loader: { ".ts": "tsx" },
   plugins: [postcss()],
