@@ -1,4 +1,4 @@
-import { PageInfo } from "popup/common";
+import { PageInfo } from "popup/hooks";
 
 /* From: https://stackoverflow.com/questions/5379120/get-the-highlighted-selected-text + Types */
 function getSelectionText() {

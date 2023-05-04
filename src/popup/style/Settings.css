@@ -1,0 +1,25 @@
+#settings {
+  .form-control {
+    @apply flex-1 flex px-3 py-2;
+
+    .label {
+      @apply font-semibold;
+    }
+
+    .label-desc {
+      @apply text-base-content text-opacity-50;
+    }
+
+    input {
+      @apply w-full input input-accent my-2;
+    }
+
+    select {
+      @apply w-full select select-accent my-2;
+    }
+  }
+
+  .submit {
+    @apply mt-auto btn btn-secondary mx-auto w-11/12 my-2;
+  }
+}

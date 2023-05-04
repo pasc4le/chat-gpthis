@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec \"pnpm run build\"",
-    "build": "node build.config.js"
+    "build": "tsc --noEmit && node build.config.js"
   },
   "keywords": [],
   "author": "",
@@ -34,6 +34,6 @@
     "ignore": [
       "**/dist/**"
     ],
-    "ext": "ts,tsx,js,jsx,cjs,css"
+    "ext": "ts,tsx,js,jsx,cjs,css,html"
   }
 }

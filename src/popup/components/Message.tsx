@@ -5,7 +5,7 @@ import {
   Message as MessageType,
   PageInfo,
   useCurrentPageInfo,
-} from "popup/common";
+} from "popup/hooks";
 
 const getInfoSource = (pageInfo: PageInfo | undefined) => {
   if (!pageInfo) return;
@@ -41,8 +41,6 @@ export function Message({
 }) {
   const pageInfo = useCurrentPageInfo();
 
-  console.log(message);
-
   if (message.role == "system" && index == 0)
     return (
       <div className={clsx(message.role, "message")}>
@@ -58,11 +56,13 @@ export function Message({
         "message"
       )}
     >
-      {message.role == "assistant" && message.loading
-        ? "Loading..."
-        : message.role == "assistant"
-          ? message.choices[message.chosen]
-          : message.content}
+      {message.role == "assistant" && message.loading ? (
+        <progress />
+      ) : message.role == "assistant" ? (
+        message.choices[message.chosen]
+      ) : (
+        message.content
+      )}
     </div>
   );
 }

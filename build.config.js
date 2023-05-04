@@ -41,7 +41,7 @@ files_to_inject.js.push(path.join(BACKGROUND_OUTDIR, "index.js"));
 fs.copyFileSync("./src/popup/index.html", POPUP_INDEX);
 
 esbuild.build({
-  entryPoints: ["src/popup/index.ts"],
+  entryPoints: ["src/popup/index.tsx"],
   bundle: true,
   minify: !IS_DEV,
   outdir: path.join(OUTDIR, POPUP_OUTDIR),

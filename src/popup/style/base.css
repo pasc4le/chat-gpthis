@@ -4,3 +4,24 @@ body,
   height: 400px;
   width: 300px;
 }
+
+#root {
+  position: relative;
+}
+
+section.view {
+  @apply flex flex-col w-full h-full;
+
+  #topbar {
+    @apply w-full flex items-center gap-2 px-3 py-2 border-b-2 border-primary-focus;
+    @apply bg-primary text-primary-content;
+
+    h1 {
+      @apply flex-1 text-xl font-bold;
+    }
+
+    button {
+      @apply ml-auto btn btn-ghost btn-square btn-sm;
+    }
+  }
+}

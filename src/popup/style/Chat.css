@@ -1,19 +1,4 @@
 #chat {
-  @apply flex flex-col w-full h-full;
-
-  #topbar {
-    @apply w-full flex items-center gap-2 px-3 py-2 border-b-2 border-primary-focus;
-    @apply bg-primary text-primary-content;
-
-    h1 {
-      @apply flex-1 text-xl font-bold;
-    }
-
-    button {
-      @apply ml-auto btn btn-ghost btn-square btn-sm;
-    }
-  }
-
   #messages {
     @apply flex-1 flex gap-3 flex-col overflow-y-auto overflow-x-hidden;
     @apply p-3;
@@ -36,6 +21,10 @@
 
     .message {
       @apply p-2 rounded-md w-11/12;
+
+      progress {
+        @apply progress w-full progress-accent;
+      }
     }
   }
 
@@ -43,11 +32,11 @@
     @apply flex gap-2 p-2 shadow-md bg-neutral border-t-2 border-neutral-focus;
 
     input[type="text"] {
-      @apply input bg-neutral input-sm flex-1;
+      @apply input bg-neutral text-neutral-content placeholder:text-neutral-content placeholder:text-opacity-80 input-sm flex-1;
     }
 
     button {
-      @apply btn btn-ghost btn-square btn-sm;
+      @apply btn btn-ghost text-neutral-content btn-square btn-sm;
     }
   }
 }
