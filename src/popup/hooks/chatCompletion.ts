@@ -169,7 +169,16 @@ export const useChatCompletion = (
         messages: [...prepareMessages(messages), newMessage],
       })
       .then((r) => r.data)
-      .catch((e) => console.error(e));
+      .catch((e) => ({
+        choices: [
+          {
+            message: {
+              role: "assistant" as const,
+              content: "Error: " + e.response.data.error.message,
+            },
+          },
+        ],
+      }));
 
     console.log("Completion Response", completion);
 

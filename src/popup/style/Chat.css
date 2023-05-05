@@ -20,7 +20,7 @@
     }
 
     .message {
-      @apply p-2 rounded-md w-11/12;
+      @apply p-2 rounded-md max-w-[90%] w-fit;
 
       progress {
         @apply progress w-full progress-accent;
