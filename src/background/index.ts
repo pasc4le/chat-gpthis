@@ -1,4 +1,4 @@
-import { PageInfo } from "popup/hooks";
+import { PageInfo } from 'popup/hooks';
 
 /* From: https://stackoverflow.com/questions/5379120/get-the-highlighted-selected-text + Types */
 function getSelectionText() {
@@ -6,12 +6,12 @@ function getSelectionText() {
   var activeEl = document.activeElement;
   var activeElTagName = activeEl ? activeEl.tagName.toLowerCase() : null;
   if (
-    activeElTagName == "textarea" ||
-    (activeElTagName == "input" &&
+    activeElTagName == 'textarea' ||
+    (activeElTagName == 'input' &&
       /^(?:text|search|password|tel|url)$/i.test(
         (activeEl as HTMLInputElement).type
       ) &&
-      typeof (activeEl as HTMLInputElement).selectionStart == "number")
+      typeof (activeEl as HTMLInputElement).selectionStart == 'number')
   ) {
     text = (activeEl as HTMLInputElement | HTMLTextAreaElement).value.slice(
       (activeEl as HTMLInputElement | HTMLTextAreaElement)?.selectionStart ?? 0,
@@ -25,11 +25,11 @@ function getSelectionText() {
 }
 /* End Paste */
 
-chrome.runtime.onMessage.addListener(function(request, _, sendResponse) {
+chrome.runtime.onMessage.addListener(function (request, _, sendResponse) {
   if (!request.action) return;
 
   switch (request.action) {
-    case "getPageInfo":
+    case 'getPageInfo':
       const pageInfo: PageInfo = {
         url: document.location.href,
         entireText: document.body.innerText,
@@ -37,27 +37,27 @@ chrome.runtime.onMessage.addListener(function(request, _, sendResponse) {
         selectedText: getSelectionText(),
       };
 
-      const articleEls = Array.from(document.querySelectorAll("article"));
+      const articleEls = Array.from(document.querySelectorAll('article'));
 
       articleEls.forEach((el, l, array) => {
         for (let i = 0; i < l; i++) if (array[i].contains(el)) return;
 
         if (!pageInfo.articlesText) pageInfo.articlesText = el.innerText;
-        else pageInfo.articlesText += "\n\n" + el.innerText;
+        else pageInfo.articlesText += '\n\n' + el.innerText;
       });
 
-      const sectionEls = document.querySelectorAll("section");
+      const sectionEls = document.querySelectorAll('section');
 
       sectionEls.forEach((el, l, array) => {
         for (let i = 0; i < l; i++) if (array[i].contains(el)) return;
 
         if (!pageInfo.sectionsText) pageInfo.sectionsText = el.innerText;
-        else pageInfo.sectionsText += "\n\n" + el.innerText;
+        else pageInfo.sectionsText += '\n\n' + el.innerText;
       });
 
       sendResponse(pageInfo);
       break;
     default:
-      console.error("Invalid Action Received: ", request);
+      console.error('Invalid Action Received: ', request);
   }
 });

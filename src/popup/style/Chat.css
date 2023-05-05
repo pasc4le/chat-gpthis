@@ -31,7 +31,7 @@
   #editor {
     @apply flex gap-2 p-2 shadow-md bg-neutral border-t-2 border-neutral-focus;
 
-    input[type="text"] {
+    input[type='text'] {
       @apply input bg-neutral text-neutral-content placeholder:text-neutral-content placeholder:text-opacity-80 input-sm flex-1;
     }
 

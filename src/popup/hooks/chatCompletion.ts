@@ -3,49 +3,49 @@ import {
   ChatCompletionResponseMessage,
   Configuration,
   OpenAIApi,
-} from "openai";
-import { STORAGE_KEY_PREFX } from "popup/common";
-import { PageInfo, useConfig, useCurrentPageInfo } from "popup/hooks";
-import { useEffect, useState } from "react";
+} from 'openai';
+import { STORAGE_KEY_PREFX } from 'popup/common';
+import { PageInfo, useConfig, useCurrentPageInfo } from 'popup/hooks';
+import { useEffect, useState } from 'react';
 
 const BASE_CHAT_COMPLETION_OPTIONS = {
-  model: "gpt-3.5-turbo",
+  model: 'gpt-3.5-turbo',
 };
 const SYSTEM_PROMPT = `You will answer thoroughly to the following questions about this text: {content}\n\nTitle: {title}`;
 
 export type Message =
   | {
-    role: "assistant";
-    loading: true;
-  }
+      role: 'assistant';
+      loading: true;
+    }
   | {
-    role: "assistant";
-    choices: string[];
-    chosen: number;
-    loading: false;
-  }
+      role: 'assistant';
+      choices: string[];
+      chosen: number;
+      loading: false;
+    }
   | {
-    role: "system";
-    content: string;
-  }
+      role: 'system';
+      content: string;
+    }
   | {
-    role: "user";
-    content: string;
-  };
+      role: 'user';
+      content: string;
+    };
 
 export const contentOrder: (keyof PageInfo)[] = [
-  "selectedText",
-  "articlesText",
-  "sectionsText",
-  "entireText",
+  'selectedText',
+  'articlesText',
+  'sectionsText',
+  'entireText',
 ];
 
 export const fillSystemPrompt = (pageInfo: PageInfo) => {
   let result = SYSTEM_PROMPT;
 
   for (let i = 0; i < contentOrder.length; i++)
-    if (contentOrder[i] in pageInfo && pageInfo[contentOrder[i]] != "") {
-      result = result.replace("{content}", pageInfo[contentOrder[i]] ?? "");
+    if (contentOrder[i] in pageInfo && pageInfo[contentOrder[i]] != '') {
+      result = result.replace('{content}', pageInfo[contentOrder[i]] ?? '');
       break;
     }
 
@@ -65,11 +65,11 @@ export const useChatCompletion = (
   const [messages, setMessages] = useState<Message[]>(startingMessages);
 
   const initializeOpenAiApi = () => {
-    console.log("config change", config);
+    console.log('config change', config);
     if (config === false) return;
 
     console.log(
-      "Configuration Change Detected, initializing openaiConfig",
+      'Configuration Change Detected, initializing openaiConfig',
       config
     );
     const openaiConfig = new Configuration({
@@ -84,7 +84,7 @@ export const useChatCompletion = (
 
     setMessages([
       {
-        role: "system",
+        role: 'system',
         content: fillSystemPrompt(pageInfo),
       },
     ]);
@@ -116,13 +116,13 @@ export const useChatCompletion = (
     if (!messages) return [];
 
     return messages
-      .filter((v) => !("loading" in v))
+      .filter((v) => !('loading' in v))
       .map((message) => {
-        if (message?.role == "assistant")
+        if (message?.role == 'assistant')
           return {
-            role: "assistant",
+            role: 'assistant',
             content: message.loading
-              ? "Loading..."
+              ? 'Loading...'
               : message.choices[message.chosen],
           };
 
@@ -134,8 +134,8 @@ export const useChatCompletion = (
     choices: { message?: ChatCompletionResponseMessage }[]
   ): Message => {
     return {
-      role: "assistant",
-      choices: choices.map((v) => v.message?.content ?? "Invalid Response."),
+      role: 'assistant',
+      choices: choices.map((v) => v.message?.content ?? 'Invalid Response.'),
       chosen: 0,
       loading: false,
     };
@@ -145,20 +145,20 @@ export const useChatCompletion = (
     if (!openai || !config || !pageInfo) return;
 
     const newMessage: Message = {
-      role: "user",
+      role: 'user',
       content: newMessageRaw,
     };
 
     setMessages((value) => {
       value.push(newMessage);
       value.push({
-        role: "assistant",
+        role: 'assistant',
         loading: true,
       });
       return [...value];
     });
 
-    console.log("Sending Chat Completion ", {
+    console.log('Sending Chat Completion ', {
       ...BASE_CHAT_COMPLETION_OPTIONS,
       messages: [...prepareMessages(messages), newMessage],
     });
@@ -173,14 +173,14 @@ export const useChatCompletion = (
         choices: [
           {
             message: {
-              role: "assistant" as const,
-              content: "Error: " + e.response.data.error.message,
+              role: 'assistant' as const,
+              content: 'Error: ' + e.response.data.error.message,
             },
           },
         ],
       }));
 
-    console.log("Completion Response", completion);
+    console.log('Completion Response', completion);
 
     setMessages((value) => {
       if (completion && completion.choices) {

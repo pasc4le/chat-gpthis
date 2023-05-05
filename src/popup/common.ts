@@ -1,1 +1,1 @@
-export const STORAGE_KEY_PREFX = "pasc4le-chatgpt-this-";
+export const STORAGE_KEY_PREFX = 'pasc4le-chatgpt-this-';

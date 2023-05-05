@@ -1,15 +1,15 @@
-import React, { useContext, useEffect } from "react";
-import { useCurrentPageInfo } from "popup/hooks";
-import { useState } from "react";
-import "popup/style/PageInfo.css";
-import { AppContext } from "popup/App";
+import React, { useContext, useEffect } from 'react';
+import { useCurrentPageInfo } from 'popup/hooks';
+import { useState } from 'react';
+import 'popup/style/PageInfo.css';
+import { AppContext } from 'popup/App';
 
 export function PageInfo() {
   const ctx = useContext(AppContext);
   const pageInfo = useCurrentPageInfo();
 
   useEffect(() => {
-    console.log("ciao2", pageInfo);
+    console.log('ciao2', pageInfo);
   }, [pageInfo]);
 
   return (
@@ -17,7 +17,7 @@ export function PageInfo() {
       <div id="topbar">
         <h1>Page Info</h1>
 
-        <button onClick={() => ctx.goTo("auto")}>
+        <button onClick={() => ctx.goTo('auto')}>
           <svg
             fill="none"
             stroke="currentColor"

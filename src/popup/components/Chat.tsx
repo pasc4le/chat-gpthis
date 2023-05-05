@@ -1,8 +1,8 @@
-import { useChatCompletion } from "popup/hooks";
-import React, { useContext, useEffect, useRef } from "react";
-import { Message } from "./Message";
-import "popup/style/Chat.css";
-import { AppContext } from "popup/App";
+import { useChatCompletion } from 'popup/hooks';
+import React, { useContext, useEffect, useRef } from 'react';
+import { Message } from './Message';
+import 'popup/style/Chat.css';
+import { AppContext } from 'popup/App';
 
 export function Chat() {
   const inputEl = useRef<HTMLInputElement>(null);
@@ -28,7 +28,7 @@ export function Chat() {
 
     sendMessage(inputEl.current.value);
 
-    inputEl.current.value = "";
+    inputEl.current.value = '';
   };
 
   return (
@@ -51,7 +51,7 @@ export function Chat() {
             />
           </svg>
         </button>
-        <button onClick={() => ctx.goTo("settings")}>
+        <button onClick={() => ctx.goTo('settings')}>
           <svg
             fill="none"
             stroke="currentColor"
@@ -67,7 +67,7 @@ export function Chat() {
             />
           </svg>
         </button>
-        <button onClick={() => ctx.goTo("info")}>
+        <button onClick={() => ctx.goTo('info')}>
           <svg
             fill="none"
             stroke="currentColor"
@@ -97,7 +97,7 @@ export function Chat() {
           type="text"
           placeholder="Send a message."
           ref={inputEl}
-          onKeyDown={(e) => (e.key == "Enter" ? sendCurrentMessage() : null)}
+          onKeyDown={(e) => (e.key == 'Enter' ? sendCurrentMessage() : null)}
         />
         <button onClick={() => sendCurrentMessage()}>
           <svg

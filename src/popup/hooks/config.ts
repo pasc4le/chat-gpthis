@@ -1,7 +1,7 @@
-import { STORAGE_KEY_PREFX } from "popup/common";
-import { useEffect, useState } from "react";
+import { STORAGE_KEY_PREFX } from 'popup/common';
+import { useEffect, useState } from 'react';
 
-export const CONFIG_KEY = STORAGE_KEY_PREFX + "config";
+export const CONFIG_KEY = STORAGE_KEY_PREFX + 'config';
 export const DEFAULT_CONFIG: Config = {};
 
 export interface Config {
@@ -30,7 +30,7 @@ export const useConfig = () => {
     chrome.storage.onChanged.addListener((changes) => {
       if (CONFIG_KEY in changes) {
         setConfig(changes[CONFIG_KEY].newValue);
-        console.log("new change", changes[CONFIG_KEY]);
+        console.log('new change', changes[CONFIG_KEY]);
       }
     });
   }, []);

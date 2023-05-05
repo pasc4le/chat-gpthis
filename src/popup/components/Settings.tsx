@@ -1,38 +1,38 @@
-import { Config, DEFAULT_CONFIG, getConfig, setConfig } from "popup/hooks";
-import React, { useContext, useEffect, useRef, useState } from "react";
-import "popup/style/Settings.css";
-import { AppContext } from "popup/App";
+import { Config, DEFAULT_CONFIG, getConfig, setConfig } from 'popup/hooks';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import 'popup/style/Settings.css';
+import { AppContext } from 'popup/App';
 
 const THEMES = [
-  "light",
-  "dark",
-  "cupcake",
-  "bumblebee",
-  "emerald",
-  "corporate",
-  "synthwave",
-  "retro",
-  "cyberpunk",
-  "valentine",
-  "halloween",
-  "garden",
-  "forest",
-  "aqua",
-  "lofi",
-  "pastel",
-  "fantasy",
-  "wireframe",
-  "black",
-  "luxury",
-  "dracula",
-  "cmyk",
-  "autumn",
-  "business",
-  "acid",
-  "lemonade",
-  "night",
-  "coffee",
-  "winter",
+  'light',
+  'dark',
+  'cupcake',
+  'bumblebee',
+  'emerald',
+  'corporate',
+  'synthwave',
+  'retro',
+  'cyberpunk',
+  'valentine',
+  'halloween',
+  'garden',
+  'forest',
+  'aqua',
+  'lofi',
+  'pastel',
+  'fantasy',
+  'wireframe',
+  'black',
+  'luxury',
+  'dracula',
+  'cmyk',
+  'autumn',
+  'business',
+  'acid',
+  'lemonade',
+  'night',
+  'coffee',
+  'winter',
 ];
 
 export function Settings() {
@@ -55,7 +55,7 @@ export function Settings() {
       <div id="topbar">
         <h1>Settings</h1>
 
-        <button onClick={() => ctx.goTo("auto")}>
+        <button onClick={() => ctx.goTo('auto')}>
           <svg
             fill="none"
             stroke="currentColor"

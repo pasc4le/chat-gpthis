@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export interface PageInfo {
   entireText: string;
@@ -26,14 +26,14 @@ export const useCurrentPageInfo = () => {
 
       const pageInfo = await chrome.tabs
         .sendMessage(focusId, {
-          action: "getPageInfo",
+          action: 'getPageInfo',
         })
         .then((r) => r)
         .catch((e) => ({
-          entireText: "",
-          url: "about:internal",
-          title: "",
-          error: "Error: " + JSON.stringify(e),
+          entireText: '',
+          url: 'about:internal',
+          title: '',
+          error: 'Error: ' + JSON.stringify(e),
         }));
 
       setPageInfo(pageInfo);
@@ -42,7 +42,7 @@ export const useCurrentPageInfo = () => {
     updateInfo();
 
     chrome.tabs.onActivated.addListener((activeTab) => {
-      console.log("Changed Tab");
+      console.log('Changed Tab');
       updateInfo(activeTab.tabId);
     });
   }, []);
