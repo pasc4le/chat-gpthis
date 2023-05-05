@@ -1,0 +1,29 @@
+kind: pipeline
+type: docker
+name: publish
+
+trigger:
+  event: [tag]
+
+steps:
+  - name: install
+    image: node:18-slim
+    commands:
+      - corepack pnpm i --frozen-lockfile
+  - name: build
+    image: node:18-slim
+    commands:
+      - corepack pnpm build
+  - name: zipping up
+    image: alpine:3
+    commands:
+      - apk add zip
+      - mkdir -p zipped
+      - zip -r ./zipped/chat-gpthis-chromium.zip ./dist/*
+  - name: release
+    image: plugins/github-release
+    settings:
+      title: "Chat-GPThis"
+      api_key:
+        from_secret: github_release_api_key
+      files: zipped/*
