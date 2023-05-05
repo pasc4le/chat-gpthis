@@ -1,6 +1,6 @@
 {
-  "name": "chat-gippity-this",
-  "version": "1.0.0",
+  "name": "chat-gpthis",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@dqbd/tiktoken": "^1.0.7",
     "@types/chrome": "^0.0.235",
     "@types/react": "^18.2.2",
     "@types/react-dom": "^18.2.3",
@@ -21,6 +20,7 @@
     "daisyui": "^2.51.6",
     "esbuild": "^0.17.11",
     "esbuild-postcss": "^0.0.4",
+    "fs-extra": "^11.1.1",
     "nodemon": "^2.0.21",
     "openai": "^3.2.1",
     "postcss": "^8.4.21",
@@ -34,6 +34,6 @@
     "ignore": [
       "**/dist/**"
     ],
-    "ext": "ts,tsx,js,jsx,cjs,css,html"
+    "ext": "ts,tsx,js,jsx,cjs,css,html,json"
   }
 }

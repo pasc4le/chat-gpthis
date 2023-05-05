@@ -1,11 +1,18 @@
 {
   "manifest_version": 3,
-  "version": "1.0.0",
-  "name": "ChatGPT This",
+  "version": "1.0.1",
+  "name": "ChatGPThis - ChatGPT on Current Page Contents",
   "author": "Giuseppe Pascale <giuseppe.pascale03@gmail.com>",
-  "description": "A simple Chrome Extension that enables the user to prompt ChatGPT a question about the current website.",
+  "description": "A simple extension that enables the user to prompt ChatGPT a question about the current website contents or selection.",
   "permissions": ["activeTab", "storage"],
+  "host_permissions": ["https://api.openai.com/*"],
   "action": {
-    "default_title": "ChatGPT This!"
+    "default_title": "Chat GPThis!"
+  },
+  "icons": {
+    "16": "logo16.png",
+    "32": "logo32.png",
+    "48": "logo48.png",
+    "128": "logo128.png"
   }
 }
