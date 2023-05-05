@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "format:fix": "prettier -w .",
+    "format": "prettier -c .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_ENV=dev nodemon --exec \"pnpm run build\"",
     "build": "tsc --noEmit && node build.config.js",
