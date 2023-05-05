@@ -1,8 +1,9 @@
 import React, { createContext, useEffect, useState } from "react";
 import { Settings } from "popup/components/Settings";
 import { Chat } from "popup/components/Chat";
-import { useConfig } from "popup/hooks";
+import { useConfig, useCurrentPageInfo } from "popup/hooks";
 import { PageInfo } from "./components/PageInfo";
+import { Error } from "./components/Error";
 
 export interface AppContext {
   view: string;
@@ -16,6 +17,7 @@ export const AppContext = createContext<AppContext>({
 
 export function App() {
   const [view, goTo] = useState("auto");
+  const pageInfo = useCurrentPageInfo();
   const config = useConfig();
 
   useEffect(() => {
@@ -26,12 +28,15 @@ export function App() {
   }, [config]);
 
   useEffect(() => {
-    console.log("View Update", view);
-  }, [view]);
+    console.log("---", pageInfo, config);
+    if (pageInfo && pageInfo?.error) goTo("error");
+  }, [pageInfo]);
 
   return (
     <AppContext.Provider value={{ view, goTo }}>
-      {view == "settings" ? (
+      {view == "error" ? (
+        <Error message="You cannot use the extension on this page." />
+      ) : view == "settings" ? (
         <Settings />
       ) : view === "info" ? (
         <PageInfo />

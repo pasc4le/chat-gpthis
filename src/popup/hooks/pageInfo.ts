@@ -7,8 +7,8 @@ export interface PageInfo {
   selectedText?: string;
   articlesText?: string;
   sectionsText?: string;
+  error?: string;
 }
-
 export const useCurrentPageInfo = () => {
   const [pageInfo, setPageInfo] = useState<PageInfo | undefined>(undefined);
 
@@ -24,11 +24,19 @@ export const useCurrentPageInfo = () => {
         focusId = tab?.id;
       }
 
-      setPageInfo(
-        await chrome.tabs.sendMessage(focusId, {
+      const pageInfo = await chrome.tabs
+        .sendMessage(focusId, {
           action: "getPageInfo",
         })
-      );
+        .then((r) => r)
+        .catch((e) => ({
+          entireText: "",
+          url: "about:internal",
+          title: "",
+          error: "Error: " + JSON.stringify(e),
+        }));
+
+      setPageInfo(pageInfo);
     };
 
     updateInfo();
